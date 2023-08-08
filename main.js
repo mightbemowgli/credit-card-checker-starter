@@ -29,7 +29,7 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 const validateCred = array => {
 
-    //starting from the farthest digit to the right (the check digit), iterate to the left    
+//starting from the farthest digit to the right (the check digit), iterate to the left    
     let totalSum = 0;
     for (let i = array.length - 1; i >= 0; i--) {
         let num = array[i];
@@ -44,22 +44,14 @@ const validateCred = array => {
           }
         }
         totalSum += num;
+        return totalSum % 10 === 0;
         // console.log(num);
         // console.log(totalSum);
     }
-    //as the function iterates to the left, every other digit is doubled (not including the check digit)
-    //if the number > 9 after doubling, -9 from the value
-    // return num > 9 ? num - 9 : num;
+}
     
-    //sum all of the digits in the cc number
-    //Math.sum()
-    
-    //if the sum % 10 === 0 then the number is valid, else it's invalid
-    // return sum % 10 === 0 ? true : false;
-    }
-    
-    // validateCred(valid1);
-    // validateCred(valid3);
+// validateCred(valid1);
+// validateCred(valid3);
 
 
 
