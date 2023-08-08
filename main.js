@@ -28,7 +28,6 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 //and return false when invalid
 
 const validateCred = array => {
-//starting from the farthest digit to the right (the check digit), iterate to the left    
     let totalSum = 0;
     let numCheck = 0;
     for (let i = array.length - 1; i >= 0; i--) {
@@ -48,8 +47,20 @@ const validateCred = array => {
     return totalSum % 10 === 0;
 }
     
-// validateCred(valid1);
-// validateCred(valid3);
+//check through nested array to validate card numbers and push invalid ones into a new array
+const findInvalidCards = array => {
+    let invalidCards = [];
+  
+    for (let i = 0; i < array.length; i++) {
+      validateCred(array[i]);
+      if (validateCred(array[i]) === false) {
+        invalidCards.push(array[i]);
+      }
+    }
+    return invalidCards;
+  }
+  
+  console.log(findInvalidCards(batch));
 
 
 
