@@ -24,7 +24,22 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 
 
 // Add your functions below:
+const validateCred = (array) => {
+//return true when an array contains digits of a valid cc number 
+//and return false when invalid
 
+//starting from the farthest digit to the right (the check digit), iterate to the left
+
+//as the function iterates to the left, every other digit is doubled (not including the check digit)
+//if the number > 9 after doubling, -9 from the value
+// return num > 9 ? num - 9 : num;
+
+//sum all of the digits in the cc number
+//Math.sum()
+
+//if the sum % 10 === 0 then the number is valid, else it's invalid
+// return sum % 10 === 0 ? true : false;
+}
 
 
 
