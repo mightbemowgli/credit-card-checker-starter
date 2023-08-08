@@ -28,14 +28,14 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 //and return false when invalid
 
 const validateCred = array => {
-
 //starting from the farthest digit to the right (the check digit), iterate to the left    
     let totalSum = 0;
+    let numCheck = 0;
     for (let i = array.length - 1; i >= 0; i--) {
+        numCheck++
         let num = array[i];
-        const isEven = i % 2 === 0;
-        // console.log(num);
-        // console.log(totalSum);
+        const isEven = numCheck % 2 === 0;
+
         if (isEven) {
           num *= 2;
     
@@ -43,11 +43,9 @@ const validateCred = array => {
             num -= 9;
           }
         }
-        totalSum += num;
-        return totalSum % 10 === 0;
-        // console.log(num);
-        // console.log(totalSum);
+        totalSum += num;     
     }
+    return totalSum % 10 === 0;
 }
     
 // validateCred(valid1);
