@@ -27,43 +27,62 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 //return true when an array contains digits of a valid cc number 
 //and return false when invalid
 
-const validateCred = array => {
+const validateCred = cardArray => {  
     let totalSum = 0;
     let numCheck = 0;
-    for (let i = array.length - 1; i >= 0; i--) {
-        numCheck++
-        let num = array[i];
+    for (let i = cardArray.length - 1; i >= 0; i--) {
+        numCheck++;
+        let num = cardArray[i];
         const isEven = numCheck % 2 === 0;
-
+  
         if (isEven) {
           num *= 2;
-    
+  
           if (num > 9) {
             num -= 9;
           }
         }
-        totalSum += num;     
+        totalSum += num;
     }
     return totalSum % 10 === 0;
-}
-    
-//check through nested array to validate card numbers and push invalid ones into a new array
-const findInvalidCards = array => {
-    let invalidCards = [];
+  }
   
-    for (let i = 0; i < array.length; i++) {
-      validateCred(array[i]);
-      if (validateCred(array[i]) === false) {
-        invalidCards.push(array[i]);
+  const findInvalidCards = nestArray => {
+    let invalidCards = [];
+    for (let i = 0; i < nestArray.length; i++) {
+      validateCred(nestArray[i]);
+      if (validateCred(nestArray[i]) === false) {
+        invalidCards.push(nestArray[i]);
       }
     }
     return invalidCards;
   }
   
-  console.log(findInvalidCards(batch));
-
-
-
-
-
-
+  const idInvalidCardCompanies = invalidArray => {
+    let companies = [];
+    for (let i = 0; i < invalidArray.length; i++) {
+      switch (invalidArray[i][0]){
+        case 3: if (companies.indexOf('Amex') === -1) {
+          companies.push('Amex');
+        }
+        break;
+        case 4: if (companies.indexOf('Visa') === -1) {
+          companies.push('Visa');
+        }
+        break;
+        case 5: if (companies.indexOf('Mastercard') === -1) {
+          companies.push('Mastercard');
+        }
+        break;
+        case 6: if (companies.indexOf('Discover') === -1) {
+          companies.push('Discover');
+        }
+        break;
+        default: 
+          console.log('Company Not Found');
+      }
+    }
+    return companies;
+  }
+  
+  console.log(idInvalidCardCompanies(findInvalidCards(batch)));
